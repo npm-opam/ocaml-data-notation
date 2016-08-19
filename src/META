@@ -1,0 +1,60 @@
+################################################################################
+#  ocaml-data-notation: Store data using OCaml notation                        #
+#                                                                              #
+#  Copyright (C) 2009-2011, OCamlCore SARL                                     #
+#  Copyright (C) 2013, Sylvain Le Gall                                         #
+#                                                                              #
+#  This library is free software; you can redistribute it and/or modify it     #
+#  under the terms of the GNU Lesser General Public License as published by    #
+#  the Free Software Foundation; either version 2.1 of the License, or (at     #
+#  your option) any later version, with the OCaml static compilation           #
+#  exception.                                                                  #
+#                                                                              #
+#  This library is distributed in the hope that it will be useful, but         #
+#  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY  #
+#  or FITNESS FOR A PARTICULAR PURPOSE. See the file COPYING for more          #
+#  details.                                                                    #
+#                                                                              #
+#  You should have received a copy of the GNU Lesser General Public License    #
+#  along with this library; if not, write to the Free Software Foundation,     #
+#  Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA               #
+################################################################################
+
+# OASIS_START
+# DO NOT EDIT (digest: 57a3438db335f9599be8b93929904451)
+version = "0.0.11"
+description = "Store data using OCaml notation"
+archive(byte) = "odn.cma"
+archive(byte, plugin) = "odn.cma"
+archive(native) = "odn.cmxa"
+archive(native, plugin) = "odn.cmxs"
+exists_if = "odn.cma"
+package "without" (
+ description = "Virtual container"
+ package "syntax" (
+  version = "0.0.11"
+  description = "Syntax extension that removes 'with odn'"
+  requires = "type_conv camlp4"
+  archive(syntax, preprocessor) = "pa_noodn.cma"
+  archive(syntax, toploop) = "pa_noodn.cma"
+  archive(syntax, byte) = "pa_noodn.cma"
+  archive(syntax, byte, plugin) = "pa_noodn.cma"
+  exists_if = "pa_noodn.cma"
+ )
+)
+
+package "with" (
+ description = "Virtual container"
+ package "syntax" (
+  version = "0.0.11"
+  description = "Syntax extension for odn"
+  requires = "type_conv camlp4 odn"
+  archive(syntax, preprocessor) = "pa_odn.cma"
+  archive(syntax, toploop) = "pa_odn.cma"
+  archive(syntax, byte) = "pa_odn.cma"
+  archive(syntax, byte, plugin) = "pa_odn.cma"
+  exists_if = "pa_odn.cma"
+ )
+)
+# OASIS_STOP
+
